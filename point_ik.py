@@ -169,6 +169,14 @@ class PointIKApp:
             # self.ik_params["use_cuda_graph"] = bool(self.cb_cuda.value)
             # self._reload_ik_wrapper()
             # print("Reloaded IK params:", self.ik_params)
+            print("Before Reset Params")
+            print(self.sl_pos.value, self.sl_rot.value, self.sl_seeds.value,
+                  self.cb_selfcol.value, self.cb_selfopt.value, self.cb_cuda.value)
+            # 重置 GUI 控件到默认值
+            self.ms_x.value = (-0.5, 0.5)
+            self.ms_y.value = (-0.5, 0.5)
+            self.ms_z.value = (0.2, 0.6)
+            self.sl_res.value = 0.1
             self.sl_pos.value = self.ik_params["pos_tol"]
             self.sl_rot.value = self.ik_params["rot_tol"]
             self.sl_seeds.value = self.ik_params["num_seeds"]
@@ -183,6 +191,9 @@ class PointIKApp:
             # 重建网格
             self._rebuild_grid_and_paint_blue()
             self._reload_ik_wrapper()
+            print("Reset Params")
+            print(self.sl_pos.value, self.sl_rot.value, self.sl_seeds.value,
+                  self.cb_selfcol.value, self.cb_selfopt.value, self.cb_cuda.value)
 
         @self.btn_solve.on_click
         def _(_evt):
